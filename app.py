@@ -9,13 +9,13 @@ from prometheus_client import Counter, start_http_server, generate_latest
 app = Flask(__name__)
 
 redis_host = os.environ.get('REDIS_HOST', 'redis-service')
+
 redis_port = 6379
 redis_password = ""
 
 r = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True)
 
 senha_gerada_counter = Counter('senha_gerada', 'Contador de senhas geradas')
-
 
 def criar_senha(tamanho, incluir_numeros, incluir_caracteres_especiais):
     caracteres = string.ascii_letters
